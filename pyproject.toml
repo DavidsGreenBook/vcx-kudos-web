@@ -3,6 +3,13 @@ name = "vcx-kudos-web"
 version = "0.1.0"
 description = "FastAPI backend"
 requires-python = ">=3.9"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "sqlalchemy",
+    "apscheduler",
+]
 
 [tool.vercel]
 entrypoint = "backend.main:app"

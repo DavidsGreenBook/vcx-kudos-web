@@ -9,6 +9,7 @@ dependencies = [
     "pydantic",
     "sqlalchemy",
     "apscheduler",
+    "psycopg2-binary",
 ]
 
 [tool.vercel]

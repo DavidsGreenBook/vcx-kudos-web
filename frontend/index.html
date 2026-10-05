@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viettel CX Kudos - Nền Tảng Vinh Danh Đồng Nghiệp</title>
+  <meta name="description" content="Nền tảng vinh danh đồng nghiệp Viettel CX (Peer Recognition). Trao gửi điểm thưởng, lan tỏa lời cảm ơn và tôn vinh tinh thần tận tâm vì khách hàng.">
+  
+  <!-- Modern Google Fonts with Vietnamese Support -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23EE0033'/><text y='68' x='50' text-anchor='middle' font-size='55' font-weight='bold' fill='%23FFB800'>CX</text></svg>">
+</head>
+<body>
+
+  <!-- ================= Header ================= -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="brand-wrapper" aria-label="Viettel CX Trang chủ">
+        <div class="brand-logo-badge">
+          <span class="vt-logo-text">VIETTEL</span>
+          <span class="vt-logo-sub">CX</span>
+        </div>
+        <div class="brand-info">
+          <span class="brand-title">Viettel CX Kudos</span>
+          <span class="brand-subtitle">Peer Recognition</span>
+        </div>
+      </a>
+
+      <!-- Quick Navigation -->
+      <nav class="header-nav" aria-label="Điều hướng chính">
+        <a href="#section-transfer" class="nav-link active">
+          <span class="nav-icon">🎁</span>
+          <span>Trao vinh danh</span>
+        </a>
+        <a href="#section-feed" class="nav-link">
+          <span class="nav-icon">📣</span>
+          <span>Bảng tin</span>
+        </a>
+        <a href="#section-leaderboard" class="nav-link">
+          <span class="nav-icon">🏆</span>
+          <span>Bảng vàng</span>
+        </a>
+        <a href="#section-rules" class="nav-link">
+          <span class="nav-icon">📋</span>
+          <span>Quy chế</span>
+        </a>
+      </nav>
+
+      <!-- User Profile & Action Bar -->
+      <div class="header-actions">
+        <!-- 5 Giá Trị CX Modal Trigger -->
+        <button type="button" class="btn-values-modal" id="btn-open-values" onclick="document.getElementById('core-values-modal').classList.add('active')" title="Xem 5 chuẩn mực giá trị cốt lõi Viettel CX">
+          <span>🌟</span>
+          <span class="btn-values-text">5 Giá trị CX</span>
+        </button>
+
+        <!-- Giving Balance Widget -->
+        <div class="giving-balance-pill" title="Số điểm bạn có thể trao tặng cho đồng nghiệp trong tuần này (Reset vào 23:59 Chủ Nhật)">
+          <span class="coin-icon">💎</span>
+          <div class="balance-text-group">
+            <span class="giving-balance-val"><strong id="giving-balance-val">--</strong> pts</span>
+            <span class="giving-balance-lbl">Quỹ tuần</span>
+          </div>
+        </div>
+
+        <!-- Current User Profile Card -->
+        <div class="current-user-card" id="btn-open-user-switch" title="Bấm để đổi tài khoản nhân viên trải nghiệm">
+          <div class="user-avatar-wrap">
+            <img id="current-user-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Avatar" />
+            <span class="online-dot" title="Đang hoạt động"></span>
+          </div>
+          <div class="current-user-details">
+            <div class="current-user-name">
+              <span id="current-user-name">Đang tải...</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="current-user-role" id="current-user-role">Viettel CX Member</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= Compact Welcome & Quick Stats Bar ================= -->
+  <section class="welcome-section">
+    <div class="container">
+      <div class="welcome-card">
+        <div class="welcome-left">
+          <div class="welcome-greeting">
+            <span class="greeting-wave">👋</span>
+            <div>
+              <h1 class="welcome-title">
+                Chào mừng <span id="welcome-user-name">bạn</span> đến với <span class="highlight-vt">Viettel CX Kudos</span>
+              </h1>
+              <p class="welcome-sub">
+                Mỗi lời cảm ơn chân thành tiếp thêm năng lượng phụng sự và gắn kết đại gia đình Viettel CX.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compact Stats Counters -->
+        <div class="quick-stats-row" id="section-stats">
+          <div class="quick-stat-item">
+            <div class="stat-icon-mini red">💌</div>
+            <div class="stat-meta">
+              <span class="stat-value" id="stat-total-recognitions">0</span>
+              <span class="stat-title">Lượt vinh danh</span>
+            </div>
+          </div>
+
+          <div class="quick-stat-item">
+            <div class="stat-icon-mini gold">✨</div>
+            <div class="stat-meta">
+              <span class="stat-value" id="stat-total-points">0</span>
+              <span class="stat-title">Tổng điểm đã trao</span>
+            </div>
+          </div>
+
+          <div class="quick-stat-item">
+            <div class="stat-icon-mini green">👥</div>
+            <div class="stat-meta">
+              <span class="stat-value" id="stat-active-employees">0</span>
+              <span class="stat-title">Nhân sự tham gia</span>
+            </div>
+          </div>
+
+          <div class="quick-stat-item">
+            <div class="stat-icon-mini purple">⚡</div>
+            <div class="stat-meta">
+              <span class="stat-value" id="stat-week-points">0</span>
+              <span class="stat-title">Điểm tuần này</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Main Workspace Layout ================= -->
+  <main class="main-content">
+    <div class="container layout-grid">
+
+      <!-- LEFT COLUMN: Transfer Form & Recognition Feed -->
+      <section class="feed-column">
+
+        <!-- 1. FORM TRAO GỬI VINH DANH (PEER RECOGNITION FORM) -->
+        <div class="content-card recognition-form-card" id="section-transfer">
+          <div class="card-header-clean">
+            <div class="card-title-group">
+              <span class="header-icon-badge">🎁</span>
+              <div>
+                <h2 class="card-main-title">Trao Gửi Vinh Danh</h2>
+                <p class="card-main-desc">Ghi nhận đóng góp xuất sắc & tinh thần đồng đội Viettel CX</p>
+              </div>
+            </div>
+            <div class="points-budget-tag" title="Hạn mức quỹ trao tặng tuần này">
+              <span>💎 Quỹ còn:</span>
+              <strong id="balance-reminder-val">200 pts</strong>
+            </div>
+          </div>
+
+          <form id="transfer-form" class="clean-form">
+            <!-- Chọn người nhận -->
+            <div class="form-group">
+              <label class="form-label" for="receiver-select">
+                Đồng nghiệp muốn vinh danh <span class="req">*</span>
+              </label>
+              <div class="select-wrapper">
+                <select id="receiver-select" class="form-select" required>
+                  <option value="">-- Chọn đồng nghiệp để cảm ơn & vinh danh --</option>
+                </select>
+                <div class="select-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chọn số điểm & Mức điểm nhanh -->
+            <div class="form-group">
+              <div class="label-with-hint">
+                <label class="form-label" for="points-input">
+                  Số điểm tặng <span class="req">*</span>
+                </label>
+                <span class="label-hint">Tối đa 200 điểm/lần</span>
+              </div>
+
+              <div class="points-select-container">
+                <div class="points-selector-row">
+                  <button type="button" class="point-chip" data-points="10">
+                    <span class="chip-pts">+10</span>
+                    <span class="chip-lbl">Biết ơn</span>
+                  </button>
+                  <button type="button" class="point-chip active" data-points="20">
+                    <span class="chip-pts">+20</span>
+                    <span class="chip-lbl">Xuất sắc</span>
+                  </button>
+                  <button type="button" class="point-chip" data-points="50">
+                    <span class="chip-pts">+50</span>
+                    <span class="chip-lbl">Bứt phá</span>
+                  </button>
+                  <button type="button" class="point-chip" data-points="100">
+                    <span class="chip-pts">+100</span>
+                    <span class="chip-lbl">Champion</span>
+                  </button>
+                </div>
+                
+                <div class="points-custom-box">
+                  <input type="number" id="points-input" class="form-input" min="1" max="200" value="20" placeholder="Tùy chỉnh..." required>
+                  <span class="points-suffix">pts</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chọn Huy hiệu Giá trị cốt lõi Viettel CX -->
+            <div class="form-group">
+              <label class="form-label">
+                Giá trị cốt lõi gắn liền <span class="req">*</span>
+              </label>
+              <div class="badge-selector-wrap">
+                <button type="button" class="badge-choice active" data-badge="Tận tâm">
+                  <span>🌟</span> Tận tâm vì KH
+                </button>
+                <button type="button" class="badge-choice" data-badge="Sáng tạo">
+                  <span>💡</span> Sáng tạo & Cải tiến
+                </button>
+                <button type="button" class="badge-choice" data-badge="Đồng đội">
+                  <span>🤝</span> Hợp lực Đồng đội
+                </button>
+                <button type="button" class="badge-choice" data-badge="Bứt phá">
+                  <span>🚀</span> Bứt phá SLA
+                </button>
+                <button type="button" class="badge-choice" data-badge="Thấu hiểu">
+                  <span>👂</span> Thấu hiểu Lắng nghe
+                </button>
+              </div>
+            </div>
+
+            <!-- Lời cảm ơn & lý do vinh danh -->
+            <div class="form-group">
+              <div class="label-with-hint">
+                <label class="form-label" for="message-input">
+                  Lời cảm ơn & Nội dung vinh danh <span class="req">*</span>
+                </label>
+                <div class="char-counter" id="char-counter">0/300</div>
+              </div>
+
+              <!-- Quick Prompt Chips -->
+              <div class="quick-prompts-row">
+                <span class="quick-prompts-lbl">Gợi ý nhanh:</span>
+                <button type="button" class="prompt-chip" data-text="Cảm ơn bạn đã tận tâm hỗ trợ xử lý ca khó của khách hàng rất chuyên nghiệp!">
+                  🌟 Hỗ trợ ca khó
+                </button>
+                <button type="button" class="prompt-chip" data-text="Sáng kiến cải tiến số của bạn đã giúp đội ngũ tiết kiệm rất nhiều thời gian phục vụ!">
+                  💡 Sáng kiến cải tiến
+                </button>
+                <button type="button" class="prompt-chip" data-text="Cảm ơn tinh thần đồng đội tuyệt vời, luôn sẵn sàng sát cánh giải quyết sự cố!">
+                  🤝 Phối hợp ăn ý
+                </button>
+                <button type="button" class="prompt-chip" data-text="Chúc mừng bạn đã nỗ lực bứt phá, hoàn thành chỉ số cam kết SLA xuất sắc!">
+                  🚀 Bứt phá chỉ số
+                </button>
+              </div>
+
+              <div class="textarea-wrapper">
+                <textarea id="message-input" class="form-textarea" maxlength="300" placeholder="Viết vài dòng chia sẻ chân thành về điều đồng nghiệp đã hỗ trợ hoặc cống hiến cho khách hàng..." required></textarea>
+              </div>
+            </div>
+
+            <!-- Compact Live Preview -->
+            <div class="live-preview-box">
+              <div class="preview-header">
+                <span class="preview-tag">👁️ Xem trước thiệp gửi</span>
+                <span class="preview-status" id="preview-badge-display">🌟 Tận tâm vì KH</span>
+              </div>
+              <div class="preview-body">
+                <div class="preview-users">
+                  <span class="preview-sender" id="preview-sender-name">Bạn</span>
+                  <span class="preview-arrow">➔</span>
+                  <span class="preview-receiver" id="preview-receiver-name">Đồng nghiệp</span>
+                  <span class="preview-points" id="preview-points-display">+20 pts</span>
+                </div>
+                <div class="preview-msg" id="preview-message-display">
+                  "Lời cảm ơn của bạn sẽ hiển thị trang trọng tại đây..."
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Actions & Button -->
+            <div class="form-actions">
+              <div class="balance-reminder">
+                <span>Khả dụng:</span> <strong id="balance-reminder-tag">200 điểm</strong>
+              </div>
+              <button type="submit" id="btn-submit-transfer" class="btn-primary">
+                <span>Gửi Vinh Danh & Trao Điểm</span>
+                <span class="btn-icon">🚀</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 2. BẢNG TIN VINH DANH (RECOGNITION FEED WALL) -->
+        <div class="feed-section-container" id="section-feed">
+          <div class="feed-header-row">
+            <div class="feed-header-left">
+              <span class="header-icon-badge">📣</span>
+              <div>
+                <h2 class="section-title">Bảng Tin Vinh Danh</h2>
+                <p class="section-subtitle">Khoảnh khắc tỏa sáng và tri ân trong đại gia đình Viettel CX</p>
+              </div>
+            </div>
+
+            <div class="feed-tabs">
+              <button class="feed-tab active" data-filter="all">Tất cả</button>
+              <button class="feed-tab" data-filter="mine">Của tôi</button>
+            </div>
+          </div>
+
+          <!-- Feed Badge Filter Pills -->
+          <div class="feed-badge-filter-bar">
+            <div class="filter-chips">
+              <button class="filter-pill active" data-badge="all">Tất cả</button>
+              <button class="filter-pill" data-badge="Tận tâm">🌟 Tận tâm</button>
+              <button class="filter-pill" data-badge="Sáng tạo">💡 Sáng tạo</button>
+              <button class="filter-pill" data-badge="Đồng đội">🤝 Đồng đội</button>
+              <button class="filter-pill" data-badge="Bứt phá">🚀 Bứt phá</button>
+              <button class="filter-pill" data-badge="Thấu hiểu">👂 Thấu hiểu</button>
+            </div>
+          </div>
+
+          <!-- Feed Cards List -->
+          <div class="feed-list" id="feed-list">
+            <!-- Dynamically populated via app.js -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT COLUMN: Leaderboard & System Rules -->
+      <aside class="sidebar-column">
+
+        <!-- 1. BẢNG VÀNG VINH DANH (LEADERBOARD) -->
+        <div class="content-card leaderboard-card" id="section-leaderboard">
+          <div class="card-header-clean">
+            <div class="card-title-group">
+              <span class="header-icon-badge gold">🏆</span>
+              <div>
+                <h2 class="card-main-title">Bảng Vàng Tôn Vinh</h2>
+                <p class="card-main-desc">Vinh danh cá nhân nhận nhiều tri ân nhất</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeframe Toggle: Tuần / Tháng / Toàn thời gian -->
+          <div class="timeframe-toggle">
+            <button class="timeframe-btn active" data-type="weekly">Theo Tuần</button>
+            <button class="timeframe-btn" data-type="monthly">Theo Tháng</button>
+            <button class="timeframe-btn" data-type="all_time">Mọi lúc</button>
+          </div>
+
+          <!-- Reset Notice & Countdown -->
+          <div class="cron-notice-banner">
+            <span class="cron-icon">⏳</span>
+            <div class="cron-content">
+              <span class="cron-title">Quỹ tuần reset sau:</span>
+              <strong id="countdown-timer" class="cron-timer">Đang tính...</strong>
+            </div>
+          </div>
+
+          <!-- Top 3 Podium (1st, 2nd, 3rd) -->
+          <div class="podium-container" id="podium-container">
+            <!-- Injected by JavaScript -->
+          </div>
+
+          <!-- Ranks 4 to 10 List -->
+          <div class="leaderboard-list-title">
+            <span>Bảng xếp hạng tiếp theo</span>
+            <span class="list-sub">Top 4 - 10</span>
+          </div>
+          <div class="leaderboard-list" id="leaderboard-list">
+            <!-- Injected by JavaScript -->
+          </div>
+        </div>
+
+        <!-- 2. QUY CHẾ VINH DANH -->
+        <div class="content-card rules-card" id="section-rules">
+          <div class="card-header-clean">
+            <div class="card-title-group">
+              <span class="header-icon-badge">📋</span>
+              <div>
+                <h3 class="card-main-title" style="font-size: 1rem;">Quy Chế Vinh Danh</h3>
+                <p class="card-main-desc">Nguyên tắc trao nhận điểm Viettel CX</p>
+              </div>
+            </div>
+          </div>
+          
+          <ul class="rules-list">
+            <li class="rule-item">
+              <span class="rule-bullet">💎</span>
+              <div>Cấp <strong>200 điểm tặng mới</strong> vào 23:59 Chủ Nhật hàng tuần.</div>
+            </li>
+            <li class="rule-item">
+              <span class="rule-bullet">⏱️</span>
+              <div>Điểm tặng <strong>không bảo lưu</strong> sang tuần sau để khuyến khích tri ân kịp thời.</div>
+            </li>
+            <li class="rule-item">
+              <span class="rule-bullet">🏅</span>
+              <div>Điểm nhận được cộng dồn xếp hạng <strong>Tuần</strong> & <strong>Tháng</strong> bình xét Champion.</div>
+            </li>
+            <li class="rule-item">
+              <span class="rule-bullet">🛡️</span>
+              <div>Tự động ngăn chặn tự tặng điểm cho chính mình và kiểm soát chặt số dư.</div>
+            </li>
+          </ul>
+
+          <!-- Collapsible Admin / Dev Testing Tools -->
+          <details class="admin-details">
+            <summary class="admin-summary">
+              <span>🛠️ Tiện ích Kiểm thử & Reset (Admin)</span>
+              <svg class="summary-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div class="admin-tools-panel">
+              <p class="admin-hint">Dành cho mục đích demo và thử nghiệm tính năng:</p>
+              <button type="button" class="btn-admin-action" id="btn-admin-reset-week" title="Mô phỏng Cronjob chạy đêm Chủ Nhật 23:59">
+                <span>🔄</span> Reset Quỹ Tuần (200 pts)
+              </button>
+              <button type="button" class="btn-admin-action" id="btn-admin-reset-month" title="Mô phỏng Cronjob chạy đêm cuối tháng">
+                <span>📅</span> Reset Bảng Tháng về 0
+              </button>
+            </div>
+          </details>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">
+          <span class="vt-logo-text-mini">VIETTEL</span>
+          <span class="vt-logo-sub-mini">CX</span>
+          <span class="footer-title">Kudos Platform</span>
+        </div>
+        <p class="footer-desc">
+          Lan tỏa sự trân trọng — Kết nối con người — Đồng hành cùng sự hài lòng của khách hàng.
+        </p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-tagline">
+          <span>❤️ Tận tâm</span> • <span>💡 Sáng tạo</span> • <span>🤝 Đồng đội</span> • <span>🚀 Bứt phá</span> • <span>👂 Thấu hiểu</span>
+        </div>
+        <div class="footer-copyright">
+          © 2026 Viettel Customer Experience Division.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= 5 Giá Trị Cốt Lõi Modal ================= -->
+  <div class="modal-overlay" id="core-values-modal">
+    <div class="modal-box modal-values-box">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-title-icon">🌟</span>
+          <div>
+            <h3 class="modal-title">5 Chuẩn Mực Dịch Vụ Cốt Lõi Viettel CX</h3>
+            <p class="modal-subtitle">Bấm vào bất kỳ giá trị nào để tự động áp dụng vào form vinh danh</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="document.getElementById('core-values-modal').classList.remove('active')" aria-label="Đóng">&times;</button>
+      </div>
+      
+      <div class="values-modal-grid">
+        <div class="service-card" data-service-badge="Tận tâm">
+          <div class="service-icon-wrap red-gradient"><span>🌟</span></div>
+          <div class="service-info">
+            <h4 class="service-name">Tận Tâm Vì Khách Hàng</h4>
+            <p class="service-desc">Phục vụ bằng cả trái tim, đặt sự hài lòng của khách hàng làm kim chỉ nam trong mọi hành động.</p>
+          </div>
+          <span class="service-action-pill">Chọn ➔</span>
+        </div>
+
+        <div class="service-card" data-service-badge="Sáng tạo">
+          <div class="service-icon-wrap gold-gradient"><span>💡</span></div>
+          <div class="service-info">
+            <h4 class="service-name">Sáng Tạo & Cải Tiến Số</h4>
+            <p class="service-desc">Không ngừng đổi mới, chủ động đề xuất giải pháp ứng dụng công nghệ để tối ưu trải nghiệm phục vụ.</p>
+          </div>
+          <span class="service-action-pill">Chọn ➔</span>
+        </div>
+
+        <div class="service-card" data-service-badge="Đồng đội">
+          <div class="service-icon-wrap ruby-gradient"><span>🤝</span></div>
+          <div class="service-info">
+            <h4 class="service-name">Hợp Lực & Đồng Đội</h4>
+            <p class="service-desc">Phối hợp nhịp nhàng, sẵn sàng hỗ trợ đồng nghiệp xử lý ca khó vì mục tiêu chung.</p>
+          </div>
+          <span class="service-action-pill">Chọn ➔</span>
+        </div>
+
+        <div class="service-card" data-service-badge="Bứt phá">
+          <div class="service-icon-wrap amber-gradient"><span>🚀</span></div>
+          <div class="service-info">
+            <h4 class="service-name">Bứt Phá Cam Kết SLA</h4>
+            <p class="service-desc">Kiên định chinh phục mọi chỉ số NPS/CSAT chất lượng cao, giữ vững tốc độ xử lý nhanh chóng.</p>
+          </div>
+          <span class="service-action-pill">Chọn ➔</span>
+        </div>
+
+        <div class="service-card" data-service-badge="Thấu hiểu">
+          <div class="service-icon-wrap warm-gradient"><span>👂</span></div>
+          <div class="service-info">
+            <h4 class="service-name">Thấu Hiểu & Lắng Nghe</h4>
+            <p class="service-desc">Lắng nghe từ trái tim, đồng cảm sâu sắc với khách hàng để chuyển hóa phản hồi thành cải tiến.</p>
+          </div>
+          <span class="service-action-pill">Chọn ➔</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= Switch User Modal ================= -->
+  <div class="modal-overlay" id="user-switch-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-title-icon">👥</span>
+          <div>
+            <h3 class="modal-title">Chọn tài khoản trải nghiệm</h3>
+            <p class="modal-subtitle">Chuyển đổi giữa các thành viên Viettel CX để kiểm thử tính năng trao nhận điểm</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="btn-close-modal" aria-label="Đóng">&times;</button>
+      </div>
+      
+      <div class="user-switch-list" id="user-switch-list">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/static/js/confetti.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

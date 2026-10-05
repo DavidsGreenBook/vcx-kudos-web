@@ -1,2 +1,8 @@
+[project]
+name = "vcx-kudos-web"
+version = "0.1.0"
+description = "FastAPI backend"
+requires-python = ">=3.9"
+
 [tool.vercel]
 entrypoint = "backend.main:app"
